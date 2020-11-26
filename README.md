@@ -1,3 +1,5 @@
+# Understanding Image Classification
+
 ## Introduction   
 
 ### Motivation
