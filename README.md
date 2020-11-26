@@ -5,9 +5,9 @@
 Image classification problem is the task of assigning an input image one label from a fixed set of categories. This is one of the core problems in Computer Vision that, despite its simplicity, has a large variety of practical applications.
 
 Traditional way: Feature Description and Detection.
-![](3.png)
+![](/img/3.png)
 Maybe good for some sample task, but the actual situation is far more complicated.
-![](2.png)
+![](/img/2.png)
 
 Therefore, instead of trying to specify what every one of the categories of interest look like directly in code, we're going to use machine learning, which is providing the computer with many examples of each class and then develop learning algorithms that look at these examples and learn about the visual appearance of each class.
 
@@ -70,7 +70,7 @@ The entire purpose of TensorFlow is to let you build a computational graph (usin
 
 	A CNN architecture is formed by a stack of distinct layers that transform the input volume into an output volume (e.g. holding the class scores) through a differentiable function.
 
-	![](12.png)
+	![](/img/12.png)
 
 	So in our implementation,  the first layer is to hold the images, then we built **3 Convolutional layers** with **2 x 2 max-pooling and Rectified Linear Unit (ReLU)**.
 	The input is a 4-dim tensor with the following dimensions:
@@ -94,7 +94,7 @@ The entire purpose of TensorFlow is to let you build a computational graph (usin
 	However to connect Convolutional layers and Fully-Connected Layers we need a **Flatten Layer** to reduce the 4-dim tensor to 2-dim which can be used as input to the fully-connected layer.
 
 	The very end of CNN is always a **softmax layer** which normalize the output from Fully-connected layer so that each element is limited between 0 and 1 and all the elements sum to 1.
-	![](14.png)
+	![](/img/14.png)
 
 	To **optimize** the training result we need a cost measure and try to minimize it every iteration.
 	The **Cost function**  we used here is **cross entropy** (called from tf.nn.oftmax_cross_entropy_with_logits()), and take the average of cross-entropy for all the image classifications.
@@ -109,9 +109,6 @@ The entire purpose of TensorFlow is to let you build a computational graph (usin
 
 	The script will run 4,000 training steps. Each step chooses ten images at random from the training set, finds their bottlenecks from the cache, and feeds them into the final layer to get predictions. Those predictions are then compared against the actual labels to update the final layer's weights through the back-propagation process.
 
-
-
-
 ## Experiments
 
 ### Dataset
@@ -120,7 +117,7 @@ The Oxford-IIIT Pet Dataset: [link](http://www.robots.ox.ac.uk/~vgg/data/pets/)
 There are 25 breeds of dog and 12 breeds of cat. Each breed has 200 images.
 
 We only used 10 cat breeds in our project.
-![](1.png)
+![](/img/1.png)
 
 The classes we used here is
  ['Sphynx','Siamese','Ragdoll','Persian','Maine-Coon','British-shorthair','Bombay','Birman','Bengal','Abyssinian']
@@ -135,7 +132,7 @@ In this project we mainly used OpenCV for precessing the image data like read th
 A common way of improving the results of image training is by deforming, cropping, or brightening the training inputs in random ways. This has the advantage of expanding the effective size of the training data thanks to all the possible variations of the same images, and tends to help the network learn to cope with all the distortions that will occur in real-life uses of the classifier.
 
 
-![](4.png)
+![](/img/4.png)
 
 See links here: [https://github.com/aleju/imgaug](https://github.com/aleju/imgaug).
 
@@ -230,7 +227,7 @@ We chose 1 x 10^-4.
 
 	**PS**: Actually we feel a little bit upset due to this result, we even didn't gain a sense of how long will a images training process be . So we found another standard dataset called **CIFAR-10**.  [Link](https://www.cs.toronto.edu/~kriz/cifar.html).
 
-	![](13.png)
+	![](/img/13.png)
 	The CIFAR-10 dataset consists of 60000 32x32 color images in 10 classes, with 6000 images per class. There are 50000 training images and 10000 test images.
 
 	We used the same network constructed above, after 10 hours training, we got 78 % accuracy on test set.
@@ -253,7 +250,7 @@ We chose 1 x 10^-4.
 
 	The results are in the following chart. Because the SVM result is very bad, even below the random guessing (1/ # of labels), we did not provide the result of that.
 
-	![](5.png)
+	![](/img/5.png)
 
 	From the result we can see:
 
@@ -269,7 +266,7 @@ We chose 1 x 10^-4.
 - **The second method**:  **Built CNN with TensorFlow**
 	As we said above, we could not get a good result due to overfitting.
 
-	![](11.png)
+	![](/img/11.png)
 
 	It normally takes half an hour to train, however since the result is overfitting, we think this running time is not valuable.
 	After comparing with method 1 we can see that: although the CNN overfits the training data, we still get better result than method 1.  
@@ -277,11 +274,11 @@ We chose 1 x 10^-4.
 
 - **The third method**: **Retrain Inception V3**
 
-	![](7.png)
+	![](/img/7.png)
 
 	The whole training progress takes no more than 10 mins. And we got extremely good results. We can actually see the power of deep learning and transfer learning.
 
-	Demo: ![](8.png)
+	Demo: ![](/img/8.png)
 
 
 ## Conclusion
@@ -312,5 +309,3 @@ We learnt some very important experience for image classification task. This kin
 3. [k-NN classifier for image classification](http://www.pyimagesearch.com/2016/08/08/k-nn-classifier-for-image-classification/)
 4. [Image Augmentation for Deep Learning With Keras](http://machinelearningmastery.com/image-augmentation-deep-learning-keras/)
 5. [Convolutional Neural Network TensorFlow Tutorial](https://github.com/Hvass-Labs/TensorFlow-Tutorials/blob/master/02_Convolutional_Neural_Network.ipynb)
-
-Note: The first method is performed by Ji Tong https://github.com/JI-tong
